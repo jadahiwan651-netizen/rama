@@ -13,8 +13,9 @@ import { Closing } from "./components/Closing";
 export default function App() {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const narrow = window.matchMedia("(max-width: 900px)").matches;
-    if (reduce || narrow) return;
+    if (reduce) return;
+
+    const compact = window.matchMedia("(max-width: 900px)").matches;
 
     const elements = Array.from(
       document.querySelectorAll<HTMLElement>("[data-parallax]"),
@@ -32,7 +33,8 @@ export default function App() {
         const rect = host.getBoundingClientRect();
         if (rect.bottom < -160 || rect.top > vh + 160) continue;
 
-        const speed = Number.parseFloat(el.dataset.parallax || "0.1");
+        const base = Number.parseFloat(el.dataset.parallax || "0.1");
+        const speed = base * (compact ? 0.55 : 1);
         const offset = (rect.top + rect.height / 2 - vh / 2) / vh;
         const y = offset * speed * 100;
         el.style.transform = `translate3d(0, ${y.toFixed(2)}px, 0) scale(1.08)`;

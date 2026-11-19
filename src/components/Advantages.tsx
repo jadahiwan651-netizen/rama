@@ -1,4 +1,5 @@
 import { asset } from "../lib/asset";
+import { useState } from "react";
 import { Reveal } from "./Reveal";
 
 const ITEMS = [
@@ -11,6 +12,8 @@ const ITEMS = [
 ];
 
 export function Advantages() {
+  const [active, setActive] = useState<number | null>(null);
+
   return (
     <section className="section adv" id="keunggulan">
       <div className="container">
@@ -42,7 +45,10 @@ export function Advantages() {
           <ol className="adv-list">
             {ITEMS.map((item, i) => (
               <Reveal as="li" key={item} variant="left" delay={i * 0.055}>
-                <div className="adv-item">
+                <div
+                  className={`adv-item${active === i ? " is-active" : ""}`}
+                  onClick={() => setActive(active === i ? null : i)}
+                >
                   <span className="a-n">0{i + 1}</span>
                   <span className="a-t">{item}</span>
                   <span className="a-arrow" aria-hidden="true">

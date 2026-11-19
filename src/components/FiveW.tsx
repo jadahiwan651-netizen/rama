@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Reveal } from "./Reveal";
 
 const ITEMS = [
@@ -28,6 +29,8 @@ const ITEMS = [
 ];
 
 export function FiveW() {
+  const [active, setActive] = useState<number | null>(null);
+
   return (
     <section className="section fivew" id="mengenal">
       <div className="container">
@@ -49,7 +52,10 @@ export function FiveW() {
               variant="up"
               delay={i * 0.06}
             >
-              <article className="wcard">
+              <article
+                className={`wcard${active === i ? " is-active" : ""}`}
+                onClick={() => setActive(active === i ? null : i)}
+              >
                 <span className="w-num" aria-hidden="true">
                   0{i + 1}
                 </span>

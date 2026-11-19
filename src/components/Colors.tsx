@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { asset } from "../lib/asset";
 import { Reveal } from "./Reveal";
@@ -49,6 +49,11 @@ const COLORS = [
 export function Colors() {
   const [active, setActive] = useState(0);
   const color = COLORS[active];
+  const touchX = useRef(0);
+  const skipClick = useRef(false);
+
+  const shift = (direction: number) =>
+    setActive((index) => (index + direction + COLORS.length) % COLORS.length);
 
   return (
     <section className="section colors" id="warna">
@@ -73,6 +78,40 @@ export function Colors() {
             <div
               className="stage-wrap"
               style={{ boxShadow: `0 44px 100px -70px ${color.tint}` }}
+              role="button"
+              tabIndex={0}
+              aria-label={`Ganti warna, sekarang ${color.name}`}
+              onClick={() => {
+                if (skipClick.current) {
+                  skipClick.current = false;
+                  return;
+                }
+                shift(1);
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  shift(1);
+                } else if (event.key === "ArrowRight") {
+                  shift(1);
+                } else if (event.key === "ArrowLeft") {
+                  shift(-1);
+                }
+              }}
+              onTouchStart={(event) => {
+                touchX.current = event.touches[0].clientX;
+              }}
+              onTouchEnd={(event) => {
+                const delta =
+                  event.changedTouches[0].clientX - touchX.current;
+                if (Math.abs(delta) > 44) {
+                  shift(delta < 0 ? 1 : -1);
+                  skipClick.current = true;
+                  window.setTimeout(() => {
+                    skipClick.current = false;
+                  }, 450);
+                }
+              }}
             >
               <img
                 src={asset("nsx-silver.webp")}
