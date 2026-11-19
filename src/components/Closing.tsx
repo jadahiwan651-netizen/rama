@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { asset } from "../lib/asset";
 import { Reveal } from "./Reveal";
 
 const NOTES = [
@@ -87,7 +88,7 @@ export function Closing() {
       <section className="cta" id="miliki">
         <div className="cta-bg" aria-hidden="true">
           <img
-            src="/assets/nsx-blue.webp"
+            src={asset("nsx-blue.webp")}
             alt=""
             width={1200}
             height={800}

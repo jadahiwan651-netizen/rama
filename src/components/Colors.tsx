@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { CSSProperties } from "react";
+import { asset } from "../lib/asset";
 import { Reveal } from "./Reveal";
 
 const COLORS = [
@@ -74,7 +75,7 @@ export function Colors() {
               style={{ boxShadow: `0 44px 100px -70px ${color.tint}` }}
             >
               <img
-                src="/assets/nsx-silver.webp"
+                src={asset("nsx-silver.webp")}
                 alt={`Honda NSX ${color.name}`}
                 width={678}
                 height={452}

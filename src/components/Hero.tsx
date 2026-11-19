@@ -1,3 +1,4 @@
+import { asset } from "../lib/asset";
 import { useEffect, useRef } from "react";
 
 function YearCounter() {
@@ -36,8 +37,8 @@ export function Hero() {
     <section className="hero" id="top">
       <div className="hero-bg" aria-hidden="true">
         <img
-          src="/assets/nsx-hero.webp"
-          srcSet="/assets/nsx-hero-sm.webp 900w, /assets/nsx-hero.webp 1600w"
+          src={asset("nsx-hero.webp")}
+          srcSet={`${asset("nsx-hero-sm.webp")} 900w, ${asset("nsx-hero.webp")} 1600w`}
           sizes="100vw"
           alt=""
           width={1600}

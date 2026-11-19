@@ -1,3 +1,4 @@
+import { asset } from "../lib/asset";
 import { Reveal } from "./Reveal";
 
 const ITEMS = [
@@ -26,8 +27,8 @@ export function Advantages() {
           <Reveal variant="scale" className="adv-media-col">
             <div className="adv-media">
               <img
-                src="/assets/nsx-white.webp"
-                srcSet="/assets/nsx-white-sm.webp 800w, /assets/nsx-white.webp 1400w"
+                src={asset("nsx-white.webp")}
+                srcSet={`${asset("nsx-white-sm.webp")} 800w, ${asset("nsx-white.webp")} 1400w`}
                 sizes="(max-width: 900px) 100vw, 48vw"
                 alt="Honda NSX putih dari samping"
                 width={1400}

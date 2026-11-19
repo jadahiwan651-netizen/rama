@@ -2,6 +2,8 @@
 
 Landing page copywriting Honda NSX dengan scroll-triggered animation, dibuat mobile-first.
 
+**Live:** https://jadahiwan651-netizen.github.io/rama/
+
 ## Stack
 
 React 19 + TypeScript + Vite. Animasi memakai IntersectionObserver + CSS (tanpa library animasi tambahan).

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { asset } from "./lib/asset";
 import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
 import { Reveal, SplitText } from "./components/Reveal";
@@ -98,7 +99,7 @@ export default function App() {
         <section className="band">
           <div className="band-media">
             <img
-              src="/assets/nsx-red.webp"
+              src={asset("nsx-red.webp")}
               alt="Honda NSX merah"
               width={675}
               height={379}
